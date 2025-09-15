@@ -59,54 +59,27 @@ A full-stack carpooling app that anonymously matches students with similar commu
               | (Routes, Users,     |
               | Matches, Chat)      |
               +--------------------+
+Backend
 
----
+Node.js with Express
+Handles multiple concurrent requests efficiently with non-blocking I/O for fast backend operations.
 
-## Backend
+PostgreSQL / MongoDB
+Efficiently stores and queries route coordinates to quickly find overlapping or nearby routes.
 
-- **Node.js with Express**  
-  Handles multiple concurrent requests efficiently with non-blocking I/O for fast backend operations.
+PostGIS
+PostgreSQL extension adding support for geographic objects and spatial queries.
 
-- **PostgreSQL / MongoDB**  
-  Efficiently stores and queries route coordinates to quickly find overlapping or nearby routes.
+Routing APIs
+Google Directions and OpenRouteService provide accurate route calculations for matching student routes precisely.
 
-- **PostGIS**  
-  PostgreSQL extension adding support for geographic objects and spatial queries.
+WebSocket Server
+Supports real-time communication between users for instant chat functionality.
 
-- **Routing APIs**  
-  Google Directions and OpenRouteService provide accurate route calculations for matching student routes precisely.
+Unique Username Generation Logic
+Ensures anonymous, non-duplicable usernames for privacy and identity management.
 
-- **WebSocket Server**  
-  Supports real-time communication between users for instant chat functionality.
+Authentication & Authorization (Firebase Auth / OAuth)
+Securely manages user sessions and protects data access while maintaining anonymity.
 
-- **Unique Username Generation Logic**  
-  Ensures anonymous, non-duplicable usernames for privacy and identity management.
 
-- **Authentication & Authorization (Firebase Auth / OAuth)**  
-  Securely manages user sessions and protects data access while maintaining anonymity.
-
----
-
-### Backend Diagram
-
-```plaintext
-+---------------------------------------------------+
-|                   Backend Server                   |
-|                (Node.js / Express)                 |
-+---------------------------------------------------+
-            |                  |                  |
-            |                  |                  |
-            v                  v                  v
-+----------------+   +-------------------+  +------------------+
-| Route Matching |   | User Management   |  | Chat Service      |
-| (PostGIS +     |   | (Unique usernames,|  | (Socket.IO /      |
-| Routing APIs)  |   | Authentication)   |  | Real-time chat)   |
-+----------------+   +-------------------+  +------------------+
-            |                  
-            v                  
-+----------------+  
-|   Database     |  
-| (PostgreSQL +  |  
-| PostGIS /      |  
-| MongoDB)       |  
-+----------------+
