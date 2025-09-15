@@ -1,87 +1,61 @@
-# FS_RohitSingh
-# Student Commute Optimizer – A full-stack carpooling app that anonymously matches students with similar commuting routes using real-time maps and chat. Helps reduce solo rides, save costs, and build smarter student commutes.
+# FS_RohitSingh  
+# Student Commute Optimizer  
+A full-stack carpooling app that anonymously matches students with similar commuting routes using real-time maps and chat. Helps reduce solo rides, save costs, and build smarter student commutes.
 
-# Frontend 
-- React-> Fast, reusable UI components with virtual DOM for efficient updates and interactive features.
+---
 
-- Mapbox GL JS / Google Maps API-> Provides smooth, customizable maps with route drawing and proximity features.
+## Frontend
 
-- Debouncing Input-> Limits API calls while typing locations, reducing server load and improving responsiveness.
+- **React**  
+  Fast, reusable UI components with virtual DOM for efficient updates and interactive features.
 
-- Lazy Loading-> Loads heavy components (maps, chat) only when needed, speeding up initial page load.
-  
-- WebSockets-> Enables real-time, low-latency chat without page refreshes for instant messaging experience.
-  
-- Redux(State Management)-> Efficiently manages app data and reduces unnecessary re-renders for better performance.
+- **Mapbox GL JS / Google Maps API**  
+  Provides smooth, customizable maps with route drawing and proximity features.
 
+- **Debouncing Input**  
+  Limits API calls while typing locations, reducing server load and improving responsiveness.
 
-- Frontend Diagram
+- **Lazy Loading**  
+  Loads heavy components (maps, chat) only when needed, speeding up initial page load.
 
-  +----------------------------------+
-  |          Student Interface        |
-  |  (React / React Native App)       |
-  +----------------------------------+
-            |            |
-            |            |
-   +--------+            +-------------------+
-   |                                 |        |
-   v                                 v        v
-+----------------+       +------------------+ +-----------------+
-| Location Input |       | Map Display      | | Chat Interface  |
-|(Home + Destination)    |(Route + Nearby)  | | (Real-time chat)|
-+----------------+       +------------------+ +-----------------+
-            |                    |                     |
-            +------------------------------------------+
-                               |
-                               v
-                      +-------------------+
-                      | State Management   |
-                      | (Context / Redux)  |
-                      +-------------------+
-                               |
-                               v
-                      +-------------------+
-                      | Backend API Calls  |
-                      | (Routes, Users,    |
-                      | Matches, Chat)     |
-                      +-------------------+
+- **WebSockets**  
+  Enables real-time, low-latency chat without page refreshes for instant messaging experience.
 
+- **Redux (State Management)**  
+  Efficiently manages app data and reduces unnecessary re-renders for better performance.
 
-# Backend 
-- Node.js with Express-> Handles multiple concurrent requests efficiently with non-blocking I/O for fast backend operations.
-  
-- PostgreSQL/MongoDB-> Efficiently stores and queries route coordinates to quickly find overlapping or nearby routes.
-  
-- PostGIS-> PostGIS is an extension for PostgreSQL that adds support for geographic objects and spatial queries.
-  
-- Routing APIs-> Its provides Googloe Directions and OpenRouteService also Provides accurate route calculations for matching student routes precisely.
+---
 
-- WebSocket Server-> Supports real-time communication between users for instant chat functionality.
+### Frontend Diagram
 
-- Unique Username Generation Logic-> Ensures anonymous, non-duplicable usernames for privacy and identity management.
-
-- Authentication & Authorization (Firebase Auth/OAuth)-> Securely manages user sessions and protects data access while maintaining anonymity.
-
-- Backend Diagram 
-
-+---------------------------------------------------+
-|                   Backend Server                   |
-|                (Node.js / Express)                 |
-+---------------------------------------------------+
-            |                  |                  |
-            |                  |                  |
-            v                  v                  v
-+----------------+   +-------------------+  +------------------+
-| Route Matching |   | User Management   |  | Chat Service      |
-| (Route overlap |   | (Unique usernames,|  | (Socket.IO /      |
-|  with PostGIS, |   | Authentication)   |  | Real-time messages)|
-|  Routing APIs) |   +-------------------+  +------------------+
-+----------------+  
-            |                  
-            v                  
-+----------------+  
-|  Database      |  
-| (PostgreSQL +  |  
-| PostGIS /      |  
-| MongoDB)       |  
-+----------------+  
+```plaintext
++------------------------------------+
+|         Student Interface           |
+|      (React / React Native App)    |
++------------------------------------+
+               |
+       +-------+--------+
+       |                |
+       v                v
++--------------+  +-----------------+   +------------------+
+| Location     |  | Map Display     |   | Chat Interface   |
+| Input        |  | (Route + Nearby)|   | (Real-time chat) |
+| (Home +      |  +-----------------+   +------------------+
+| Destination) |          
++--------------+
+       |                |               |
+       +----------------+---------------+
+                        |
+                        v
+              +--------------------+
+              | State Management    |
+              | (React Context /    |
+              | Redux)             |
+              +--------------------+
+                        |
+                        v
+              +--------------------+
+              | Backend API Calls   |
+              | (Routes, Users,     |
+              | Matches, Chat)      |
+              +--------------------+
